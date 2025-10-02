@@ -1,5 +1,6 @@
 module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
+  version = "5.1.2"
 
   name = "my-vpc"
   cidr = "172.20.0.1/16"
@@ -12,10 +13,6 @@ module "vpc" {
   enable_vpn_gateway = true
   single_nat_gateway = true
 
-  tags = {
-    Terraform = "true"
-    Environment = "dev"
-  }
   public_subnet_tags = {
     "kubernets.io/cluster/${local.cluster_name}" = "shared"
     "kubernetes.io/role/elb" = 1
