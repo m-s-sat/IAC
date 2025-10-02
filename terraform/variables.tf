@@ -1,11 +1,11 @@
 variable "region" {
   description = "Availability region"
   type        = string
-  default = "us-east-1"
+  default     = "us-east-1"
 }
 
 variable "cluster_name" {
   description = "eks cluster name"
-  type = string
-  default = "cicdproject-eks"
+  type        = string
+  default     = "cicdproject-eks"
 }
