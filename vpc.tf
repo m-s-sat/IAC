@@ -1,0 +1,27 @@
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+
+  name = "my-vpc"
+  cidr = "172.20.0.1/16"
+
+  azs             = slice(data.aws_availability_zones.available.names, 0, 3) 
+  private_subnets = ["172.20.0.1/24", "172.20.0.1/24", "172.20.0.1/24"]
+  public_subnets  = ["172.20.0.1/24", "172.20.0.1/24", "172.20.0.1/24"]
+
+  enable_nat_gateway = true
+  enable_vpn_gateway = true
+  single_nat_gateway = true
+
+  tags = {
+    Terraform = "true"
+    Environment = "dev"
+  }
+  public_subnet_tags = {
+    "kubernets.io/cluster/${local.cluster_name}" = "shared"
+    "kubernetes.io/role/elb" = 1
+  }
+  private_subnet_tags = {
+    "kubernets.io/cluster/${local.cluster_name}" = "shared"
+    "kubernetes.io/role/internal-elb" = 1
+  }
+}
