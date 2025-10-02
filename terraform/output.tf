@@ -10,7 +10,7 @@ output "region" {
   description = "cluster region"
   value       = var.region
 }
-output "cluster_security_group_id" {
-  description = "cluster security group id"
-  value       = module.eks.cluster_security_group_id
-}
+# output "cluster_security_group_id" {
+#   description = "cluster security group id"
+#   value       = module.eks.cluster_security_group_id
+# }
