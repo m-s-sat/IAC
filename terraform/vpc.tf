@@ -3,7 +3,7 @@ module "vpc" {
   version = "5.1.2"
 
   name = "my-vpc"
-  cidr = "172.20.0.1/16"
+  cidr = "172.20.0.0/16"
 
   azs             = slice(data.aws_availability_zone.available.name, 0, 3)
   private_subnets = ["172.20.0.1/24", "172.20.0.1/24", "172.20.0.1/24"]
